@@ -1,0 +1,55 @@
+@import '../styles/variables/index';
+@import '../styles/mixins/index';
+
+.Button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  font-family: map-get($fontFamilies, 'main');
+  font-size: 0.9375rem;
+  font-weight: map-get($fontweights, 'semiBold');
+  text-transform: capitalize;
+  padding: 0.5333em 1em;
+  min-width: 6.25rem;
+
+  @include hover {
+    -webkit-box-shadow: 0px 0px 10px -5px $buttonBoxShadowColor;
+    -moz-box-shadow: 0px 0px 10px -5px $buttonBoxShadowColor;
+    box-shadow: 0px 0px 10px -5px $buttonBoxShadowColor;
+  }
+
+  &:focus {
+    @include focus;
+
+    -webkit-box-shadow: 0px 0px 10px -5px $buttonBoxShadowColor;
+    -moz-box-shadow: 0px 0px 10px -5px $buttonBoxShadowColor;
+    box-shadow: 0px 0px 10px -5px $buttonBoxShadowColor;
+    border: none;
+  }
+}
+
+.Button--context--primary {
+  background-color: $orangeMain;
+  color: $whiteMain;
+  height: 2.875rem;
+
+  @include hover {
+    background-color: $orangeHover;
+    color: $whiteMain;
+  }
+}
+
+.Button--context--secondary {
+  color: $blackMain;
+  border: 1px solid $blackMain;
+  height: 2.625rem;
+
+  @include hover {
+    background-color: $blackMain;
+    color: $whiteMain;
+  }
+}

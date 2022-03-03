@@ -1,0 +1,6 @@
+@import '../variables/index';
+
+@mixin focus {
+  outline: 2px outset $focusOutlineColor;
+  outline-offset: 2px;
+}
