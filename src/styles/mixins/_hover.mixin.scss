@@ -1,6 +1,6 @@
 @mixin hover {
-  @media (not(hover)) {
-    &:hover {
+  @media (hover) {
+    &:hover:enabled {
       @content;
     }
   }
