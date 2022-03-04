@@ -1,5 +1,14 @@
-@import '../styles/variables/index';
-@import '../styles/mixins/index';
+@import '../../styles/variables/index';
+@import '../../styles/mixins/index';
+
+@keyframes scale-up-center {
+  0% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 .Button {
   display: inline-flex;
@@ -11,24 +20,30 @@
   background-color: transparent;
   font-family: map-get($fontFamilies, 'main');
   font-size: 0.9375rem;
-  font-weight: map-get($fontweights, 'semiBold');
+  font-weight: map-get($fontWeights, 'semiBold');
   text-transform: capitalize;
   padding: 0.5333em 1em;
   min-width: 6.25rem;
+  letter-spacing: 0.04em;
+  transition: background-color 0.3s, color 0.3s;
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $buttonDisabledColor;
+  }
 
   @include hover {
-    -webkit-box-shadow: 0px 0px 10px -5px $buttonBoxShadowColor;
-    -moz-box-shadow: 0px 0px 10px -5px $buttonBoxShadowColor;
     box-shadow: 0px 0px 10px -5px $buttonBoxShadowColor;
   }
 
-  &:focus {
+  &:focus-visible {
     @include focus;
+  }
 
-    -webkit-box-shadow: 0px 0px 10px -5px $buttonBoxShadowColor;
-    -moz-box-shadow: 0px 0px 10px -5px $buttonBoxShadowColor;
-    box-shadow: 0px 0px 10px -5px $buttonBoxShadowColor;
-    border: none;
+  &:active:enabled {
+    outline: none;
+    outline-offset: 0;
+    animation: scale-up-center 0.3s both;
   }
 }
 
@@ -38,7 +53,7 @@
   height: 2.875rem;
 
   @include hover {
-    background-color: $orangeHover;
+    background-color: $orangeSecondary;
     color: $whiteMain;
   }
 }
@@ -52,4 +67,8 @@
     background-color: $blackMain;
     color: $whiteMain;
   }
+}
+
+.Button--shape--roundCorners {
+  border-radius: $buttonBorderRadius;
 }

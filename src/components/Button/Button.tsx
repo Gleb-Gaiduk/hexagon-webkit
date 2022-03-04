@@ -1,21 +1,23 @@
 import React from 'react';
 import cn from 'classnames';
 import styles from './Button.module.scss';
+import Loader from '../Loader/Loader';
 
 export enum ButtonContext {
   PRIMARY = 'primary',
   SECONDARY = 'secondary'
 }
 
-interface ButtonProps {
+export interface ButtonProps {
+  textLabel: string;
   type?: 'submit' | 'button';
-  className?: string;
   dataTest: string;
+  className?: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   buttonContext?: ButtonContext;
   isDisabled?: boolean;
-  textLabel: string;
-  // isLoading?: boolean;
+  isLoading?: boolean;
+  isRoundCorners?: boolean;
 }
 
 function Button({
@@ -25,24 +27,34 @@ function Button({
   onClick,
   buttonContext = ButtonContext.SECONDARY,
   isDisabled = false,
-  textLabel
-}: // isLoading = false
-ButtonProps) {
+  textLabel,
+  isLoading = false,
+  isRoundCorners = false
+}: ButtonProps) {
   const appliedClassName = cn(styles.Button, {
     className,
     [styles['Button--context--primary']]: buttonContext === ButtonContext.PRIMARY,
-    [styles['Button--context--secondary']]: buttonContext === ButtonContext.SECONDARY
+    [styles['Button--context--secondary']]: buttonContext === ButtonContext.SECONDARY,
+    [styles['Button--shape--roundCorners']]: isRoundCorners
   });
+
+  const isShowingLoader = isLoading && isDisabled;
+
+  const onButtonClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+    onClick(e);
+  };
 
   return (
     <button
       className={appliedClassName}
       data-test={dataTest}
       type={type === 'submit' ? 'submit' : 'button'}
-      onClick={onClick}
+      onClick={onButtonClick}
       disabled={isDisabled}
     >
       <span>{textLabel}</span>
+      {isShowingLoader && <Loader />}
     </button>
   );
 }
