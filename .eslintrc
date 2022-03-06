@@ -36,9 +36,25 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["**/*.stories.*", "**/.storybook/**/*.*"],
+        "devDependencies": [
+          "**/*.stories.*",
+          "**/.storybook/**/*.*",
+          "**/setupTests.ts",
+          "**/*.test.*"
+        ],
         "peerDependencies": true
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"]
+    },
+    {
+      "files": ["*.test.ts", "*.test.tsx"],
+      "rules": {
+        "@typescript-eslint/ban-ts-comment": "off"
+      }
+    }
+  ]
 }
