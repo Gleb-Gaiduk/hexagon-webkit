@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import styles from './Button.module.scss';
+import './Button.scss';
 import Loader from '../Loader/Loader';
 
 export enum ButtonContext {
@@ -31,11 +31,11 @@ function Button({
   isLoading = false,
   isRoundCorners = false
 }: ButtonProps) {
-  const appliedClassName = cn(styles.Button, {
+  const appliedClassName = cn('Button', {
     className,
-    [styles['Button--context--primary']]: buttonContext === ButtonContext.PRIMARY,
-    [styles['Button--context--secondary']]: buttonContext === ButtonContext.SECONDARY,
-    [styles['Button--shape--roundCorners']]: isRoundCorners
+    'Button--context--primary': buttonContext === ButtonContext.PRIMARY,
+    'Button--context--secondary': buttonContext === ButtonContext.SECONDARY,
+    'Button--shape--roundCorners': isRoundCorners
   });
 
   const isShowingLoader = isLoading && isDisabled;
@@ -53,7 +53,7 @@ function Button({
       onClick={onButtonClick}
       disabled={isDisabled}
     >
-      <span>{textLabel}</span>
+      <span data-test='text-label'>{textLabel}</span>
       {isShowingLoader && <Loader />}
     </button>
   );

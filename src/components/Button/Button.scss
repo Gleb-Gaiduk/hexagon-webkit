@@ -56,6 +56,10 @@
     background-color: $orangeSecondary;
     color: $whiteMain;
   }
+
+  @include for-phone-only {
+    height: 2.25rem;
+  }
 }
 
 .Button--context--secondary {

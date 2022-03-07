@@ -23,25 +23,19 @@ Secondary.args = {
 
 export const PrimaryDisabled = Template.bind({});
 PrimaryDisabled.args = {
-  buttonContext: ButtonContext.PRIMARY,
-  textLabel: 'Add Primary',
-  dataTest: 'primary-btn',
+  ...Primary.args,
   isDisabled: true
 };
 
 export const PrimaryDisabledWithLoading = Template.bind({});
 PrimaryDisabledWithLoading.args = {
-  buttonContext: ButtonContext.PRIMARY,
-  textLabel: 'Add Primary',
-  dataTest: 'primary-btn',
+  ...Primary.args,
   isLoading: true,
   isDisabled: true
 };
 
 export const PrimaryWithRoundCorners = Template.bind({});
 PrimaryWithRoundCorners.args = {
-  buttonContext: ButtonContext.PRIMARY,
-  textLabel: 'Add Primary',
-  dataTest: 'primary-btn',
+  ...Primary.args,
   isRoundCorners: true
 };
