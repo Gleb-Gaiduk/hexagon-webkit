@@ -3,23 +3,45 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 export default {
   title: 'Atoms/Button',
-  component: Button
+  component: Button,
+  parameters: {
+    backgrounds: {
+      values: [
+        { name: 'light', value: '#ffffff' },
+        { name: 'dark', value: '#2B3934' }
+      ]
+    }
+  }
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  buttonContext: ButtonContext.PRIMARY,
-  textLabel: 'Add Primary',
+  textLabel: 'Primary',
   dataTest: 'primary-btn'
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  textLabel: 'Add Secondary',
-  dataTest: 'secondary-btn'
+export const SecondaryOnLight = Template.bind({});
+SecondaryOnLight.args = {
+  textLabel: 'Secondary Light',
+  dataTest: 'secondary-btn',
+  buttonContext: ButtonContext.SECONDARY_ON_LIGHT
 };
+
+export const SecondaryOnDark = Template.bind({});
+SecondaryOnDark.args = {
+  textLabel: 'Secondary Dark',
+  dataTest: 'secondary-btn',
+  buttonContext: ButtonContext.SECONDARY_ON_DARK
+};
+SecondaryOnDark.decorators = [
+  Story => (
+    <div style={{ background: '#2B3934', padding: '15px' }}>
+      <Story />
+    </div>
+  )
+];
 
 export const PrimaryDisabled = Template.bind({});
 PrimaryDisabled.args = {
@@ -32,10 +54,4 @@ PrimaryDisabledWithLoading.args = {
   ...Primary.args,
   isLoading: true,
   isDisabled: true
-};
-
-export const PrimaryWithRoundCorners = Template.bind({});
-PrimaryWithRoundCorners.args = {
-  ...Primary.args,
-  isRoundCorners: true
 };

@@ -1,78 +1,29 @@
-@import '../../styles/variables/index';
-@import '../../styles/mixins/index';
-
-@keyframes scale-up-center {
-  0% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+@import '~hexagon-styles/src/3-components/button.scss';
 
 .Button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  background-color: transparent;
-  font-family: map-get($fontFamilies, 'main');
-  font-size: 0.9375rem;
-  font-weight: map-get($fontWeights, 'semiBold');
-  text-transform: capitalize;
-  padding: 0.5333em 1em;
-  min-width: 6.25rem;
-  letter-spacing: 0.04em;
-  transition: background-color 0.3s, color 0.3s;
-
-  &:disabled {
-    cursor: not-allowed;
-    background-color: $buttonDisabledColor;
-  }
-
-  @include hover {
-    box-shadow: 0px 0px 10px -5px $buttonBoxShadowColor;
-  }
-
-  &:focus-visible {
-    @include focus;
-  }
-
-  &:active:enabled {
-    outline: none;
-    outline-offset: 0;
-    animation: scale-up-center 0.3s both;
-  }
+  @include button-base;
 }
 
 .Button--context--primary {
-  background-color: $orangeMain;
-  color: $whiteMain;
-  height: 2.875rem;
-
-  @include hover {
-    background-color: $orangeSecondary;
-    color: $whiteMain;
-  }
-
-  @include for-phone-only {
-    height: 2.25rem;
-  }
+  @include button-primary;
 }
 
-.Button--context--secondary {
-  color: $blackMain;
-  border: 1px solid $blackMain;
-  height: 2.625rem;
-
-  @include hover {
-    background-color: $blackMain;
-    color: $whiteMain;
-  }
+.Button--context--secondary-on-light {
+  @include button-secondary-on-light;
 }
 
-.Button--shape--roundCorners {
-  border-radius: $buttonBorderRadius;
+.Button--context--secondary-on-dark {
+  @include button-secondary-on-dark;
+}
+
+.Button--size--sm {
+  @include button-size-sm;
+}
+
+.Button--size--md {
+  @include button-size-md;
+}
+
+.Button--size--lg {
+  @include button-size-lg;
 }

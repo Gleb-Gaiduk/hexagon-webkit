@@ -4,24 +4,31 @@ import Loader from '../Loader/Loader';
 
 const basicMockedProps: ButtonProps = {
   textLabel: 'Test label',
-  dataTest: 'secondary-test-btn',
+  dataTest: 'primary-test-btn',
   onClick: jest.fn(() => console.log('Click'))
 };
 
 describe('<Button /> component', () => {
   describe('Initial state', () => {
+    let component: any;
     const props = { ...basicMockedProps };
-    const component = shallow(<Button {...props} />);
 
-    it('should render with the class of secondary context by default', () => {
-      expect(component).toHaveLength(1);
+    beforeEach(() => {
+      component = shallow(<Button {...props} />);
+    });
+
+    it('should have a primary context by default', () => {
       expect(
-        component.find('[data-test="secondary-test-btn"]').hasClass('Button--context--secondary')
+        component.find('[data-test="primary-test-btn"]').hasClass('Button--context--primary')
       ).toEqual(true);
     });
 
     it('should not be disabled', () => {
-      expect(component.find('[data-test="secondary-test-btn"]').prop('disabled')).toBeFalsy();
+      expect(component.find('[data-test="primary-test-btn"]').prop('disabled')).toBeFalsy();
+    });
+
+    it('should have "button" type by default', () => {
+      expect(component.find('[data-test="primary-test-btn"]').prop('type')).toBe('button');
     });
 
     it('should render correct text label', () => {
@@ -30,6 +37,12 @@ describe('<Button /> component', () => {
 
     it('should not render a Loader', () => {
       expect(component.find(Loader)).toHaveLength(0);
+    });
+
+    it('should have middle size by default', () => {
+      expect(component.find('[data-test="primary-test-btn"]').hasClass('Button--size--md')).toEqual(
+        true
+      );
     });
   });
 
@@ -50,28 +63,18 @@ describe('<Button /> component', () => {
     });
   });
 
-  it('should render with the class of primary context when the primary context is passed', () => {
+  it('should render with the class of secondary context when the secondary context is passed', () => {
     const props = {
       ...basicMockedProps,
-      buttonContext: ButtonContext.PRIMARY,
-      dataTest: 'primary-test-btn'
+      buttonContext: ButtonContext.SECONDARY_ON_DARK,
+      dataTest: 'secondary-test-btn'
     };
     const component = shallow(<Button {...props} />);
 
     expect(
-      component.find('[data-test="primary-test-btn"]').hasClass('Button--context--primary')
-    ).toEqual(true);
-  });
-
-  it('should render with the class of round corners when isRoundCorners is passed', () => {
-    const props = {
-      ...basicMockedProps,
-      isRoundCorners: true
-    };
-    const component = shallow(<Button {...props} />);
-
-    expect(
-      component.find('[data-test="secondary-test-btn"]').hasClass('Button--shape--roundCorners')
+      component
+        .find('[data-test="secondary-test-btn"]')
+        .hasClass('Button--context--secondary-on-dark')
     ).toEqual(true);
   });
 
@@ -92,6 +95,12 @@ describe('<Button /> component', () => {
   it('should render Loader component when isLoading and isDisabled props are passed', () => {
     const props = { ...basicMockedProps, isLoading: true, isDisabled: true };
     const component = mount(<Button {...props} />);
+
     expect(component.find(Loader)).toHaveLength(1);
+  });
+
+  it('should have "submit" type when passed as prop', () => {
+    const component = mount(<Button {...basicMockedProps} type={'submit'} />);
+    expect(component.find('[data-test="primary-test-btn"]').prop('type')).toBe('submit');
   });
 });

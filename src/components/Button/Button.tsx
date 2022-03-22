@@ -5,37 +5,48 @@ import Loader from '../Loader/Loader';
 
 export enum ButtonContext {
   PRIMARY = 'primary',
-  SECONDARY = 'secondary'
+  SECONDARY_ON_LIGHT = 'secondaryOnLight',
+  SECONDARY_ON_DARK = 'secondaryOnDark'
+}
+
+export enum ButtonSize {
+  SM = 'sm',
+  MD = 'md',
+  LG = 'lg'
 }
 
 export interface ButtonProps {
   textLabel: string;
   type?: 'submit' | 'button';
+  size?: ButtonSize;
   dataTest: string;
   className?: string;
+  theme?: 'light' | 'dark';
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   buttonContext?: ButtonContext;
   isDisabled?: boolean;
   isLoading?: boolean;
-  isRoundCorners?: boolean;
 }
 
 function Button({
   type,
+  size = ButtonSize.MD,
   className,
   dataTest,
   onClick,
-  buttonContext = ButtonContext.SECONDARY,
+  buttonContext = ButtonContext.PRIMARY,
   isDisabled = false,
   textLabel,
-  isLoading = false,
-  isRoundCorners = false
+  isLoading = false
 }: ButtonProps) {
   const appliedClassName = cn('Button', {
     className,
     'Button--context--primary': buttonContext === ButtonContext.PRIMARY,
-    'Button--context--secondary': buttonContext === ButtonContext.SECONDARY,
-    'Button--shape--roundCorners': isRoundCorners
+    'Button--context--secondary-on-light': buttonContext === ButtonContext.SECONDARY_ON_LIGHT,
+    'Button--context--secondary-on-dark': buttonContext === ButtonContext.SECONDARY_ON_DARK,
+    'Button--size--sm': size === ButtonSize.SM,
+    'Button--size--md': size === ButtonSize.MD,
+    'Button--size--lg': size === ButtonSize.LG
   });
 
   const isShowingLoader = isLoading && isDisabled;

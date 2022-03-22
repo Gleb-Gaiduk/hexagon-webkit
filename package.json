@@ -2,23 +2,14 @@
   "name": "hexagon-webkit",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "classnames": "^2.3.1",
-    "normalize.css": "^8.0.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "5.0.0",
-    "sass": "^1.49.9",
-    "sass-loader": "^10.2.1",
-    "typescript": "^4.6.2"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
-    "storybook": "start-storybook -p 6006 -s public"
+    "storybook": "start-storybook -p 6006 -s public",
+    "styles:update": "npm uninstall hexagon-styles && npm i github:Gleb-Gaiduk/hexagon-styles#master"
   },
   "eslintConfig": {
     "extends": [
@@ -63,6 +54,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "hexagon-styles": "github:Gleb-Gaiduk/hexagon-styles#master",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "5.0.0",
+    "sass": "^1.49.9",
+    "sass-loader": "^10.2.1",
+    "typescript": "^4.6.2"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^6.4.19",
