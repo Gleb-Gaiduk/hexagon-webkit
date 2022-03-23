@@ -1,0 +1,27 @@
+@import '~hexagon-styles/src/2-foundations/typography/mixins';
+
+.Heading {
+  &--type--h1 {
+    @include h1-typography;
+  }
+
+  &--type--h2 {
+    @include h2-typography;
+  }
+
+  &--type--h3 {
+    @include h3-typography;
+  }
+
+  &--type--h4 {
+    @include h4-typography;
+  }
+
+  &--type--h5 {
+    @include h5-typography;
+  }
+
+  &--type--h6 {
+    @include h6-typography;
+  }
+}
