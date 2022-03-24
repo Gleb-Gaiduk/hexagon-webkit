@@ -2,6 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import './Button.scss';
 import Loader from '../Loader/Loader';
+import Text, { TextStyle } from '../Text/Text';
 
 export enum ButtonContext {
   PRIMARY = 'primary',
@@ -64,6 +65,11 @@ function Button({
       onClick={onButtonClick}
       disabled={isDisabled}
     >
+      {textLabel && (
+        <Text textStyle={TextStyle.BUTTON} dataTest={'text-label'}>
+          {textLabel}
+        </Text>
+      )}
       <span data-test='text-label'>{textLabel}</span>
       {isShowingLoader && <Loader />}
     </button>
