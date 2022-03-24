@@ -1,0 +1,27 @@
+@import '~hexagon-styles/src/2-foundations/typography/mixins';
+
+.HexText {
+  &--style--body-sm {
+    @include body-typography-sm;
+  }
+
+  &--style--body-md {
+    @include body-typography-sm;
+  }
+
+  &--style--subscript-sm {
+    @include subscript-typography-sm;
+  }
+
+  &--style--subscript-md {
+    @include subscript-typography-md;
+  }
+
+  &--style--button {
+    @include button-typography;
+  }
+
+  &--style--overline {
+    @include overline-typography;
+  }
+}
